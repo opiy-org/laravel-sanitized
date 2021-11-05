@@ -22,6 +22,7 @@ class SanitizedTest extends TestCase
      */
     protected function getEnvironmentSetUp($app)
     {
+        $app['config']->set('app.env', 'testing');
         $app['config']->set('app.debug', 'true');
         $app['config']->set('database.default', 'testbench');
         $app['config']->set('database.connections.testbench', [
@@ -29,7 +30,6 @@ class SanitizedTest extends TestCase
             'database' => ':memory:',
             'prefix' => '',
         ]);
-
         $app['config']->set('hashing', ['driver' => 'bcrypt']);
 
         Schema::create('dirty_articles', function (Blueprint $table) {

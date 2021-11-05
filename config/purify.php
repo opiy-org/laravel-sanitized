@@ -41,7 +41,7 @@ return [
         |
         */
 
-        'Cache.SerializerPath' => storage_path('app/purify'),
+        'Cache.SerializerPath' => config('app.env') === 'testing' ? './tests/temp/' : storage_path('app/purify'),
 
         /*
         |--------------------------------------------------------------------------

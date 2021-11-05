@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.1.2 - 2021-10-05
+- bug fixes
+
 ## 1.1.1 - 2021-10-05
 - minor optimization
 

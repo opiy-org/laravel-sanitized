@@ -27,7 +27,7 @@ trait Sanitized
                     continue;
                 }
 
-                $purifier = new Purify(config('purify.config', []));
+                $purifier = new Purify(config('purify.settings', []));
                 $model->$key = $purifier->clean($value);
             }
         });
