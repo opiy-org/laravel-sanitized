@@ -20,7 +20,7 @@ class SanitizedTest extends TestCase
     /**
      * @param Application $app
      */
-    protected function getEnvironmentSetUp(Application $app): void
+    protected function getEnvironmentSetUp(Application $app)
     {
         $app['config']->set('app.debug', 'true');
         $app['config']->set('database.default', 'testbench');
@@ -45,7 +45,7 @@ class SanitizedTest extends TestCase
      * @param Application $app
      * @return string[]
      */
-    protected function getPackageProviders(Application $app): array
+    protected function getPackageProviders(Application $app)
     {
         return [
             LaravelSanitizedServiceProvider::class,
@@ -55,7 +55,7 @@ class SanitizedTest extends TestCase
     /**
      * @group smoke
      */
-    public function testCreatingModelCleanSuccess()
+    public function testCreatingModelCleanSuccess(): void
     {
         $item = DirtyPost::create([
             'title' => 'test',
@@ -70,7 +70,7 @@ class SanitizedTest extends TestCase
     /**
      * @group smoke
      */
-    public function testUpdatingModelCleanSuccess()
+    public function testUpdatingModelCleanSuccess(): void
     {
         $item = DirtyPost::create([
             'title' => 'test',
@@ -88,7 +88,7 @@ class SanitizedTest extends TestCase
     /**
      * @group smoke
      */
-    public function testCreatingModelNotCleanNotInList()
+    public function testCreatingModelNotCleanNotInList(): void
     {
         $html = '<script>1235</script>test';
         $item = DirtyPost::create([
