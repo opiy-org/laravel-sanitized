@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="vendor/autoload.php"
-         beStrictAboutOutputDuringTests="true"
-         beStrictAboutTodoAnnotatedTests="true"
-         verbose="true">
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bootstrap="vendor/autoload.php"
+         beStrictAboutOutputDuringTests="true" beStrictAboutTodoAnnotatedTests="true" verbose="true"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
+    <coverage processUncoveredFiles="true">
+        <include>
+            <directory>src</directory>
+        </include>
+        <report>
+            <clover outputFile="tests/code-coverage-report.xml"/>
+            <text outputFile="php://stdout"/>
+        </report>
+    </coverage>
     <testsuites>
         <testsuite name="default">
             <directory>tests</directory>
         </testsuite>
     </testsuites>
-
-    <filter>
-        <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory>src</directory>
-        </whitelist>
-    </filter>
-    <logging>
-        <log type="coverage-text" target="php://stdout"/>
-        <log type="coverage-clover" target="tests/code-coverage-report.xml"/>
-    </logging>
+    <logging/>
     <php>
         <server name="APP_ENV" value="testing"/>
         <server name="APP_ENV" value="testing"/>

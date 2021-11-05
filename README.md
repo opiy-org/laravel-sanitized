@@ -42,7 +42,7 @@ Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recen
 
 ### Security
 
-If you discover any security related issues, please email opiy@opiy.org instead of using the issue tracker.
+If you discover any security related issues, please email opiy[at]opiy.org instead of using the issue tracker.
 
 ## Credits
 
