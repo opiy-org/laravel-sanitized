@@ -20,7 +20,12 @@ composer require opiy-org/laravel-sanitized
 Just add trait to your models:
 
 ```php
-use LaravelSanitized;
+use OpiyOrg\LaravelSanitized\Sanitized;
+
+class YoutModel extends Model
+{
+    use Sanitized;
+    ...
 ```
 
 And also add the list of model's fields you want to be sanitized:
