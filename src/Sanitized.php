@@ -19,11 +19,12 @@ trait Sanitized
     {
         static::saving(function (Model $model) {
             foreach ($model->getDirty() as $key => $value) {
-                if (isset($model->fieldsToSanitize) && in_array($key, $model->fieldsToSanitize)) {
-                    $value = (new Purify())->clean($value);
+                if (!isset($model->fieldsToSanitize) || !in_array($key, $model->fieldsToSanitize)) {
+                    continue;
                 }
 
-                $model->$key = $value;
+                $purifier = new Purify(config('purify.config', []));
+                $model->$key = $purifier->clean($value);
             }
         });
     }
