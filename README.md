@@ -15,6 +15,11 @@ You can install the package via composer:
 composer require opiy-org/laravel-sanitized
 ```
 
+Publish config file
+```bash 
+php artisan vendor:publish --provider=OpiyOrg\LaravelSanitized\LaravelSanitizedServiceProvider"
+```
+
 ## Usage
 
 Just add trait to your models:
