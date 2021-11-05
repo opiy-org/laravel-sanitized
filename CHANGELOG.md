@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.1.1 - 2021-10-05
+- minor optimization
+
 ## 1.1.0 - 2021-10-05
 - fix config bug
 

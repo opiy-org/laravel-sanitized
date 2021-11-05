@@ -18,8 +18,12 @@ trait Sanitized
     public static function bootSanitized(): void
     {
         static::saving(function (Model $model) {
+            if (!isset($model->fieldsToSanitize)) {
+                return;
+            }
+
             foreach ($model->getDirty() as $key => $value) {
-                if (!isset($model->fieldsToSanitize) || !in_array($key, $model->fieldsToSanitize)) {
+                if (!in_array($key, $model->fieldsToSanitize)) {
                     continue;
                 }
 

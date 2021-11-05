@@ -32,6 +32,14 @@ class SanitizedTest extends TestCase
 
         $app['config']->set('hashing', ['driver' => 'bcrypt']);
 
+        Schema::create('dirty_articles', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('title')->nullable();
+            $table->text('body')->nullable();
+            $table->text('description')->nullable();
+            $table->timestamps();
+        });
+
         Schema::create('dirty_posts', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title')->nullable();
@@ -101,6 +109,22 @@ class SanitizedTest extends TestCase
         $this->assertEquals('test', $item->body);
         $this->assertEquals($html, $item->description);
     }
+
+    /**
+     * @group smoke
+     */
+    public function testCreatingModelCleanFailed(): void
+    {
+        $html = '<script>alert(1);</script><b>clean</b>';
+        $item = DirtyArticle::create([
+            'title' => 'test',
+            'body' => $html,
+        ]);
+
+        $item->refresh();
+
+        $this->assertEquals($html, $item->body);
+    }
 }
 
 /**
@@ -120,5 +144,21 @@ class DirtyPost extends Model
 
     protected array $fieldsToSanitize = [
         'body',
+    ];
+}
+
+/**
+ * DirtyArticle
+ */
+class DirtyArticle extends Model
+{
+    use Sanitized;
+
+    public $table = 'dirty_articles';
+
+    public $fillable = [
+        'title',
+        'body',
+        'description',
     ];
 }
