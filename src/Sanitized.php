@@ -20,7 +20,7 @@ trait Sanitized
         static::saving(function (Model $model) {
             foreach ($model->getDirty() as $key => $value) {
                 if (isset($model->fieldsToSanitize) && in_array($key, $model->fieldsToSanitize)) {
-                    $value = (new Purify)->clean($value);
+                    $value = (new Purify())->clean($value);
                 }
 
                 $model->$key = $value;

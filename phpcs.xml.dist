@@ -21,8 +21,8 @@
 
     <rule ref="Generic.Files.LineLength">
         <properties>
-            <property name="lineLimit" value="80"/>
-            <property name="absoluteLineLimit" value="90"/>
+            <property name="lineLimit" value="120"/>
+            <property name="absoluteLineLimit" value="120"/>
             <property name="ignoreComments" value="false"/>
         </properties>
     </rule>
@@ -63,16 +63,6 @@
         </properties>
     </rule>
 
-    <!--
-    Do not allow multiple arguments on same line in multiline expressions.
-    Do not allow spaces between closing parenthesis and semicolon.
-    -->
-    <rule ref="PEAR.Functions.FunctionCallSignature">
-        <properties>
-            <property name="allowMultipleArguments" value="false"/>
-        </properties>
-    </rule>
-
     <rule ref="PSR2.Classes.ClassDeclaration">
         <properties>
             <property name="indent" value="4"/>
@@ -81,17 +71,10 @@
 
     <!-- Rules for commenting -->
     <rule ref="Squiz.Commenting.FunctionComment.EmptyThrows"/>
-    <rule ref="Squiz.Commenting.FileComment.EmptyCopyrightTag"/>
     <rule ref="Squiz.Commenting.ClassComment.SpacingAfter"/>
     <rule ref="Generic.Commenting.DocComment.NonParamGroup"/>
     <rule ref="PEAR.Commenting.FunctionComment.SpacingAfter"/>
     <rule ref="PEAR.Commenting.FunctionComment.MissingParamComment"/>
-    <rule ref="PEAR.Commenting.ClassComment">
-        <exclude name="PEAR.Commenting.ClassComment.MissingCategoryTag"/>
-        <exclude name="PEAR.Commenting.ClassComment.MissingLicenseTag"/>
-        <exclude name="PEAR.Commenting.ClassComment.MissingLinkTag"/>
-        <exclude name="PEAR.Commenting.ClassComment.PackageTagOrder"/>
-    </rule>
 
     <!-- Private properties MUST not be prefixed with an underscore -->
     <rule ref="Squiz.NamingConventions.ValidVariableName.PrivateNoUnderscore">
