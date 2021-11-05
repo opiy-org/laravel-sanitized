@@ -20,7 +20,7 @@ class SanitizedTest extends TestCase
     /**
      * @param Application $app
      */
-    protected function getEnvironmentSetUp(Application $app)
+    protected function getEnvironmentSetUp($app)
     {
         $app['config']->set('app.debug', 'true');
         $app['config']->set('database.default', 'testbench');
@@ -45,7 +45,7 @@ class SanitizedTest extends TestCase
      * @param Application $app
      * @return string[]
      */
-    protected function getPackageProviders(Application $app)
+    protected function getPackageProviders($app)
     {
         return [
             LaravelSanitizedServiceProvider::class,
