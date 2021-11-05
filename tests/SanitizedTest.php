@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace OpiyOrg\Laravelsanitized\Tests;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Schema;
 use OpiyOrg\LaravelSanitized\LaravelSanitizedServiceProvider;
-use OpiyOrg\LaravelSanitized\Sanitized;
+use OpiyOrg\Laravelsanitized\Tests\Models\DirtyArticle;
+use OpiyOrg\Laravelsanitized\Tests\Models\DirtyPost;
 use Orchestra\Testbench\TestCase;
 
 /**
@@ -67,12 +67,10 @@ class SanitizedTest extends TestCase
     {
         $item = DirtyPost::create([
             'title' => 'test',
-            'body' => '<script>alert(1);</script><b>clean</b>',
+            'body' => '<script>alert(1);</script><b style="text-indent: 15pt;">clean text</b>',
         ]);
 
-        $item->refresh();
-
-        $this->assertEquals('<b>clean</b>', $item->body);
+        $this->assertEquals('<b>clean text</b>', $item->body);
     }
 
     /**
@@ -85,12 +83,10 @@ class SanitizedTest extends TestCase
             'body' => 'fake',
         ]);
         $item->update([
-            'body' => '<iframe src="http://google.com"/>',
+            'body' => '<iframe src="http://google.com"/><i class="someClass">test</i><em class="secondClass">em</em>',
         ]);
 
-        $item->refresh();
-
-        $this->assertEquals('', $item->body);
+        $this->assertEquals('<i class="someClass">test</i><em>em</em>', $item->body);
     }
 
     /**
@@ -98,13 +94,12 @@ class SanitizedTest extends TestCase
      */
     public function testCreatingModelNotCleanNotInList(): void
     {
-        $html = '<script>1235</script>test';
+        $html = '<script>alert(1235); let i = 12; </script>test';
         $item = DirtyPost::create([
             'title' => 'test',
             'body' => $html,
             'description' => $html,
         ]);
-        $item->refresh();
 
         $this->assertEquals('test', $item->body);
         $this->assertEquals($html, $item->description);
@@ -121,44 +116,6 @@ class SanitizedTest extends TestCase
             'body' => $html,
         ]);
 
-        $item->refresh();
-
         $this->assertEquals($html, $item->body);
     }
-}
-
-/**
- * DirtyPost
- */
-class DirtyPost extends Model
-{
-    use Sanitized;
-
-    public $table = 'dirty_posts';
-
-    public $fillable = [
-        'title',
-        'body',
-        'description',
-    ];
-
-    protected array $fieldsToSanitize = [
-        'body',
-    ];
-}
-
-/**
- * DirtyArticle
- */
-class DirtyArticle extends Model
-{
-    use Sanitized;
-
-    public $table = 'dirty_articles';
-
-    public $fillable = [
-        'title',
-        'body',
-        'description',
-    ];
 }
