@@ -21,6 +21,7 @@
   ],
   "require": {
     "php": "^7.4|^8.0",
+    "ext-fileinfo": "*",
     "illuminate/support": "^8.0",
     "stevebauman/purify": "^4.0"
   },
