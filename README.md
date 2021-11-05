@@ -1,8 +1,7 @@
 # Laravel-sanitized
 [![Latest Stable Version](http://poser.pugx.org/opiy-org/laravel-sanitized/v)](https://packagist.org/packages/opiy-org/laravel-sanitized)
 [![GitHub latest commit](https://badgen.net/github/last-commit/opiy-org/laravel-sanitized)](https://GitHub.com/opiy-org/laravel-sanitized/commit/)
-[![Packagist](https://img.shields.io/packagist/v/opiy-org/laravel-sanitized)](https://packagist.org/packages/opiy-org/laravel-sanitized/)
-[![Total Downloads](https://img.shields.io/packagist/dt/opiy-org/laravel-sanitized.svg?style=flat-square)](https://packagist.org/packages/opiy-org/laravel-sanitized)
+[![Packagist](https://img.shields.io/github/release/opiy-org/laravel-sanitized.svg?style=flat)](https://packagist.org/packages/opiy-org/laravel-sanitized/)
 ![GitHub Actions](https://github.com/opiy-org/laravel-sanitized/actions/workflows/main.yml/badge.svg)
 
 Clean html in eloquent model fields on saving
